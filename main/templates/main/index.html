@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="theme-color" content="#2196F3">
+    <title>Dost IITGuwahati</title>
+    {% load staticfiles %}
+    <!-- CSS  -->
+    <link href=" {% static 'main3/min/plugin-min.css' %} " type="text/css" rel="stylesheet">
+    <link href=" {% static 'main3/min/custom-min.css' %} " type="text/css" rel="stylesheet" >
+    <!-- jQuery -->
+
+
+</head>
+<body id="top" class="scrollspy">
+
+<!-- Pre Loader -->
+<div id="loader-wrapper">
+    <div id="loader"></div>
+
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+
+</div>
+
+<!--Navigation-->
+ <div class="navbar-fixed">
+    <nav id="nav_f" class="default_color" role="navigation">
+        <div class="container-fluid">
+            <div class="nav-wrapper">
+            <!--<a href="#" id="logo-container" class="brand-logo">MD Template</a>-->
+                <ul class="left hide-on-med-and-down">
+                    <li> <a href="/" >Dost</a></li>
+                    <li> <a href="/discussions" >Discuss</a></li>
+                    <li> <a href="/faqs" >FAQs</a></li>
+                    <li> <a href="/quotes" > Quotes</a></li>
+                    <li> <a href="/blog" > Blog</a></li>
+                    <li> <a href="/team" > Team</a></li>
+                    {% if user.is_authenticated %}
+                           {% if request.user.username == "counselor1" %}
+                           <li> <a href="/counsellor/messlist/" >MessageList</a></li>
+                           <li> <a href="/counsellor/notifi/" >Notifications</a></li>
+                           {% else %}
+                            <li> <a href="/counsellor/myinbox/" >Inbox</a></li>
+                            <li> <a href="/counsellor/ask" >Ask Counsellor</a></li>
+                            <li> <a href="/counsellor/notifi/" >Notifications</a></li>
+                           {% endif %}
+
+                    {% endif %}
+                </ul>
+                <ul class="right hide-on-med-and-down">
+                    {% if user.is_authenticated %}
+                        <ul class="right hide-on-med-and-down">
+                        <li  style="margin:0px 5px 0px 0px;"><a href="" class="waves-effect waves-light btn"> Welcome {{ user.username }} </a>  </li>
+                        <li style="margin:0px 10px 0px 0px;"><a href="/logout" class="waves-effect waves-light btn">Logout</a> </li>
+                        </ul>
+
+                    {% else %}
+                        <ul class="right hide-on-med-and-down">
+                    	<li style="margin:0px 5px 0px 0px;"><a href="/login" class="waves-effect waves-light btn">LOGIN</a></li>
+						<li style="margin:0px 10px 0px 0px;"><a href="/register" class="waves-effect waves-light btn">SIGNUP NOW</a></li>
+
+                        </ul>
+                    {% endif %}
+                </ul>
+
+                <ul id="nav-mobile" class="side-nav">
+                    <li> <a href="/" >Dost</a></li>
+                    <li> <a href="/discussions" >Discuss</a></li>
+                    <li> <a href="/faqs" >FAQs</a></li>
+                    <li> <a href="/quotes" > Quotes</a></li>
+                    <li> <a href="/blog" > Blog</a></li>
+                    <li> <a href="/team" > Team</a></li>
+                    {% if user.is_authenticated %}
+                           {% if request.user.username == "counselor1" %}
+                           <li> <a href="/counsellor/messlist/" >MessageList</a></li>
+                           <li> <a href="/counsellor/notifi/" >Notifications</a></li>
+                           {% else %}
+                            <li> <a href="/counsellor/myinbox/" >Inbox</a></li>
+                            <li> <a href="/counsellor/ask" >Ask Counsellor</a></li>
+                            <li> <a href="/counsellor/notifi/" >Notifications</a></li>
+                           {% endif %}
+
+                    {% endif %}
+
+                    {% if user.is_authenticated %}
+                        <ul class="right hide-on-med-and-down">
+                        <li  class="navbar-text" > Welcome !! {{ user.username }}   </li>
+                        <li><a href="/logout" class="waves-effect waves-light btn">Logout</a> </li>
+                        </ul>
+
+                    {% else %}
+                        <ul class="right hide-on-med-and-down">
+                    	<li style=""><a href="/login" class="waves-effect waves-light btn">LOGIN</a></li>
+						<li style=""><a href="/register" class="waves-effect waves-light btn">SIGNUP NOW</a></li>
+                        </ul>
+                    {% endif %}
+                </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!--Hero-->
+<div class="section no-pad-bot" id="index-banner" >
+    <div class="container">
+        <h1 class="text_h center header cd-headline letters type">
+            <span>IITG Dost</span>
+            <span class="cd-words-wrapper waiting">
+                <b class="is-visible">Welcomes you !!!</b>
+                <b>Thanks you for joining us.</b>
+                <b>How can we help you?</b>
+            </span>
+        </h1>
+    </div>
+</div>
+
+<!--                                          -->
+<div id="intro" class="section scrollspy">
+    <div class="container">
+        <div class="row">
+            <div  class="col s12">
+                <h2 class="center header text_h2"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. <span class="span_h2"> Phasellus  </span>vestibulum lorem risus, nec suscipit lorem <span class="span_h2"> laoreet quis.</span> </h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--  ------------ We are here to help you...  We are here to help you... We are here to help you... We are here to help you...  ----    -->
+
+
+
+<div class="section scrollspy" id="work">
+    <div class="container">
+        <h2 class="header text_b">We are here to help you ..</h2>
+        <div class="row">
+
+            <div class="col s12 m6 l6">
+                <div class="card"   >
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Discussion <i class="mdi-navigation-more-vert right"></i></span>
+                        <p><a href="/discussions">Lets discuss</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Discussion <i class="mdi-navigation-close right"></i></span>
+                        <p>Sole purpose of Discussion forum is to provide all possible help to our community members.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l6">
+                <div class="card" id="box">
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">FAQs <i class="mdi-navigation-more-vert right"></i></span>
+                        <p><a href="/faqs">FAQs </a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">FAQs <i class="mdi-navigation-close right"></i></span>
+                        <p>Frequently asked question that may help you.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l6">
+                <div class="card" id="box">
+
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Quotes <i class="mdi-navigation-more-vert right"></i></span>
+                        <p><a href="/quotes">Get inspiration</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Quotes <i class="mdi-navigation-close right"></i></span>
+                        <p>Quotes that motivates and inspire you to give nothing less than best</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l6">
+                <div class="card" id="box">
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Blog <i class="mdi-navigation-more-vert right"></i></span>
+                        <p><a href="/blog">Share your story</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Blog <i class="mdi-navigation-close right"></i></span>
+                        <p>Share your story with us, that may help someone.</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--    ------------------------------- Parallax Parallax Parallax Parallax Parallax Parallax-----------------          -->
+
+<div  class="white-text text-darken-2" style="background-color:#2196F3;" >
+
+       <div class="container">
+    <div class="section">
+
+      <div class="row">
+        <div class="col s12 center">
+          <div style="margin:35px 0px 0px 0px" >
+          <h2>About Us</h2>
+              </div>
+            <div style="margin:15px 0px 0px 0px">
+          <h5 ><p class="left-align ">
+                IIT Guwahati provides Emotional support to all its student through this website which provide
+                anonymous discussion within our community and chat with counsellor.Apart from this any student can have face to
+              face interaction with our counselors.
+                <br>
+                </p><p class="left-align " >
+                The views,opinions expressed and solution suggested herein are solely those of the members and counsellors and do not
+                necessarily reflect the official views of the IITGuwahati. IITGuwahati assumes no responsibility or liability for any consequence of the information supplied by user of this site.
+                These Terms and Conditions of Use apply to you when you view, access or otherwise use this site.
+
+              </p>
+              </h5>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+        </div>
+
+
+
+
+
+
+
+
+<!--      ------------------------------------Team Team Team Team Team Team Team Team Team Team --------------------------------          -->
+
+
+
+
+
+<div class="section scrollspy" id="team">
+    <div class="container">
+        <h2 class="header text_b"> Counsellors</h2>
+        <div class="row">
+            <div class="col s12 m3">
+                <div class="card card-avatar">
+                    <div class="waves-effect waves-block waves-light">
+                        <img class="activator" src="img/avatar1.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">DR. LAKSHMI<br/>
+                            <small><em><a class="red-text text-darken-1" href="#">Counsellor</a></em></small></span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="card card-avatar">
+                    <div class="waves-effect waves-block waves-light">
+                        <img class="activator" src="img/avatar2.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">MRS. PALLABITA<br/>
+                            <small><em><a class="red-text text-darken-1" href="#">Counsellor</a></em></small>
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="card card-avatar">
+                    <div class="waves-effect waves-block waves-light">
+                        <img class="activator" src="img/avatar3.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">
+                            DR. BANDANA <br/>
+                            <small><em><a class="red-text text-darken-1" href="#">Counsellor</a></em></small></span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="card card-avatar">
+                    <div class="waves-effect waves-block waves-light">
+                        <img class="activator" src="img/avatar4.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">MR. XYZ<br/>
+                            <small><em><a class="red-text text-darken-1" href="#">Counsellor</a></em></small></span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--               -----------Footer Footer Footer Footer Footer Footer Footer Footer Footer Footer Footer -------------        -->
+
+<footer id="contact" class="page-footer default_color scrollspy">
+    <div class="container">
+        <div class="row">
+
+            <div class="col l6 s12">
+                <h5 class="white-text">IITGuwahati</h5>
+                <ul>
+                    <li><a class="white-text" href="http://202.141.80.14/">Intranet</a></li>
+                    <li><a class="white-text" href="https://webmail.iitg.ernet.in/src/login.php">Webmail</a></li>
+                    <li><a class="white-text" href="http://www.iitg.ac.in/">IITGuwahti</a></li>
+                </ul>
+            </div>
+            <div class="col l6 s12">
+                <h5 class="white-text">Social</h5>
+                <ul>
+                    <li>
+                        <a class="white-text" href="https://www.facebook.com/saathi.counsellingservice.iitguwahati/">
+                            <i class="small fa fa-facebook-square white-text"></i> Facebook
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="white-text" href="#">
+                            <i class="small fa fa-linkedin-square white-text"></i> Linkedin
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright default_color">
+        <div class="container">
+
+            <h5> Developed by <a class="white-text" href="https://www.facebook.com/vivekk753"><b>Vivek Kumar</b></a>. All right reserved <a class="white-text" href="#"><b>SWC IITGuwahati</b></a>
+          </h5>
+        </div>
+    </div>
+</footer>
+
+
+    <!--  Scripts-->
+    <script src=" {% static 'main3/min/plugin-min.js'%}"></script>
+    <script src=" {% static 'main3/min/custom-min.js '%}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".card").hover(function(){
+                $(this).css("background-color", "#77EF46");
+                }, function(){
+                $(this).css("background-color", "white");
+            });
+        });
+     </script>
+
+
+    </body>
+</html>

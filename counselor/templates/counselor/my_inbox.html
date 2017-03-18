@@ -1,0 +1,29 @@
+{% extends "main/base.html" %}
+{% block content  %}
+
+
+   <div class="container-fluid" >
+                    <div class="row" >
+                        <div class="col s12 m4 l3 " >
+                            <div class="container ">
+                                <div class="card-panel teal lighten-2" >
+
+                                    <h4> Inbox </h4>
+                                    <h5> Welcome !!! {{ user }}</h5>
+                                    <p> List of all your conversations </p>
+                                </div>
+
+                       </div>
+                       </div>
+                        <div class="col s12 m8 l9">
+                            {% for obj in queryset %}
+                                   <div class="card-panel">
+                                  <a href='{{ obj.id }}'> <h4>{{ obj.title }}</h4>  </a>
+                                    <ul>{{ obj.timestamp }} </ul>
+                                   </div>
+                            {% endfor %}
+                        </div>
+                     </div>
+    </div>
+
+{% endblock content %}

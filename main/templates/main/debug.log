@@ -1,0 +1,6 @@
+[0316/172359.626:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\settings.dat: Access is denied. (0x5)
+[0316/172359.672:ERROR:registration_protocol_win.cc(60)] WaitNamedPipe: The system cannot find the file specified. (0x2)
+[0316/172359.797:ERROR:crashpad_win.cc(223)] Crashpad handler failed to start, crash reporting disabled
+[0316/181740.070:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\settings.dat: Access is denied. (0x5)
+[0316/181740.117:ERROR:registration_protocol_win.cc(60)] WaitNamedPipe: The system cannot find the file specified. (0x2)
+[0316/181740.258:ERROR:crashpad_win.cc(223)] Crashpad handler failed to start, crash reporting disabled

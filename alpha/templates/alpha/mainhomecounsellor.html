@@ -1,0 +1,28 @@
+{% extends "main/base2.html" %}
+{% block content  %}
+<style>
+        #chatbody {
+float: left;
+  width: 75%;
+  margin-left: 25%;
+  margin-top: 8%;
+  padding: 0;
+  overflow-y:hidden;
+}
+
+
+
+    </style>
+
+
+<div id="chatbody">
+{% if cond == True %}
+    <h1> You are already alloted to a particular user, if you have finised chat press either of pause or complete</h1>
+    <a href={{ url }}>Click Here</a>
+{% else %}
+    {% for url in urls %}
+        <a href={{ url.url }}>Click Here to chat to {{ url.name }}</a><br>
+    {% endfor %}
+{% endif %}
+</div>
+{% endblock content %}

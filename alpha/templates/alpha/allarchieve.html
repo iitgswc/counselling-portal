@@ -1,0 +1,23 @@
+{% extends "main/base2.html" %}
+{% block content  %}
+<style>
+        #chatbody {
+float: left;
+  width: 75%;
+  margin-left: 25%;
+  margin-top: 8%;
+  padding: 0;
+  overflow-y:hidden;
+}
+
+
+    </style>
+
+
+
+<div id="chatbody">
+{% for url in urls %}
+    <a href={{ url.url }}>  {{ url.name }}    </a><br>
+{% endfor %}
+</div>
+{% endblock %}

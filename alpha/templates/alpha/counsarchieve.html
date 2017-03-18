@@ -1,0 +1,47 @@
+
+{% extends "main/base2.html" %}
+{% block content  %}
+
+
+{% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'archieve.css' %}">
+
+<style>
+        #chatbody {
+  float: left;
+  width: 75%;
+  margin-left: 25%;
+  margin-top: 8%;
+  padding: 0;
+  overflow-y:hidden;
+}
+
+
+
+    </style>
+
+  <!-- Latest compiled and minified CSS -->
+
+    <div id="chatbody">
+    <div id="chat-body" class="panel panel-default">
+        <div class="panel-heading">Chat Box</div>
+        <div id="msg-list-div" class="panel-body">
+            <ul id="msg-list" class="collection">
+                {% for obj in chat %}
+                    {% if obj.user == request.user %}
+
+                        <li class="collection-item" style="text-align: right">{{ obj.user.username }} {{ obj.user.is_staff }}   {{ obj.message }}</li>
+
+                    {% else %}
+
+                        <li class="collection-item" style="text-align: left">{{ obj.user.username }} {{ obj.user.is_staff }}   {{ obj.message }}</li>
+                    {% endif %}
+                {% empty %}
+                    <li class="collection-item">No messages yet!</li>
+                {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+    </div>
+{% endblock %}

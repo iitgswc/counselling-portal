@@ -1,0 +1,29 @@
+{% extends "main/base.html" %}
+{% block content  %}
+     <div class="container">
+         <div class="row">
+             <div class="col s12 m8 l8 " >
+
+
+                {% for obj in queryset %}
+                     <div class="card-panel">
+                        <p> {{ obj.content }} </p>
+                        <p> By : {{ obj.user }} </p>
+                        <p> At--{{ obj.timestamp }} </p>
+                    </div>
+                {% endfor %}
+
+                {% load crispy_forms_tags %}
+
+                <form method="POST" action="" >{% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Reply to Counselor" />
+                </form>
+
+              </div>
+         </div>
+     </div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="theme-color" content="#2196F3">
+    <title>Dost IITGuwahati</title>
+    {% load staticfiles %}
+    <!-- CSS  -->
+    <link href=" {% static 'min/plugin-min.css' %} " type="text/css" rel="stylesheet">
+    <link href=" {% static 'min/custom-min.css' %} " type="text/css" rel="stylesheet" >
+    <link type="text/css" rel="stylesheet" href=" {% static 'css/materialize.min.css' %} "  media="screen,projection"/>
+    <!-- jQuery -->
+
+
+</head>
+<body>
+    <nav class="navbar navbar-default ">
+        <div class="container-fluid" >
+            <div class="navbar-header" >
+
+                <ul class="nav navbar-nav">
+                    <li> <a href="/" >Dost</a></li>
+                    <li> <a href="/discussions" >Discuss</a></li>
+                    <li> <a href="/faqs" >FAQS</a></li>
+                    <li> <a href="/quotes" > Quotes</a></li>
+                    <li> <a href="/blog" > Blog</a></li>
+                    <li> <a href="/team" > Team</a></li>
+                    {% if user.is_authenticated %}
+                           {% if request.user.username == "counselor1" %}
+                           <li> <a href="/counsellor/messlist/" >MessageList</a></li>
+                           <li> <a href="/counsellor/notifi/" >Notifications</a></li>
+                           {% else %}
+                            <li> <a href="/counsellor/myinbox/" >Inbox</a></li>
+                            <li> <a href="/counsellor/ask" >Ask Counsellor</a></li>
+                            <li> <a href="/counsellor/notifi/" >Notifications</a></li>
+                           {% endif %}
+
+                    {% endif %}
+
+                    {% if user.is_authenticated %}
+                       <ul class="right hide-on-med-and-down">
+                        <li  style="margin:0px 5px 0px 0px;"><a href="" class="waves-effect waves-light btn"> Welcome {{ user.username }} </a>  </li>
+                        <li style="margin:0px 10px 0px 0px;"><a href="/logout" class="waves-effect waves-light btn">Logout</a> </li>
+                        </ul>
+                    {% else %}
+                        <ul class="right hide-on-med-and-down">
+                    	<li style=""><a href="/login" class="waves-effect waves-light btn">LOGIN</a></li>
+						<li style=""><a href="/register" class="waves-effect waves-light btn">SIGNUP NOW</a></li>
+                        </ul>
+                    {% endif %}
+
+                    </ul>
+        </div>
+            </div>
+
+    </nav>
+    <!--Work-->
+<div class="section scrollspy" id="work">
+    <div class="container">
+        <h2 class="header text_b">Our Amazing Dedicated Team</h2>
+        <div class="row">
+            <div class="col s12 m4 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="{% static 'img/pravalhika.jpg' %} ">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> Pravalhika Injarapu
+                         <i class="mdi-navigation-more-vert right"></i></span>
+                         <p><a href="#">Follow her on Facebook</a>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Pravalhika Injarapu <i class="mdi-navigation-close right"></i></span>
+                        <p>
+                            Injarapu Pravalhika, B.Des undergraduate at IIT Guwahati.A compassionate heart who likes helping people in distress.
+                            A person with positive heart and mind.She is a person who loves being loved and makes sure people are happy around her.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                         <img class="activator" src="{% static 'img/demo.jpg' %} ">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Vikram Singh <i class="mdi-navigation-more-vert right"></i></span>
+                        <p><a href="#">Follow him on Facebook</a>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Vikram Singh <i class="mdi-navigation-close right"></i></span>
+                        <p>Mr. Vikram Singh is a pre-final year undergraduate student pursuing Engineering Physics at IIT Guwahati.He is involved in Counselling Cell for more than a year and has a strong desire to help people.He believes that life is a gift, and we must cherish it.
+                            A good listener and tries to encourage people to live their life beautifully as well as help others to do the same.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="{% static 'img/demo.jpg' %} ">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Mrinmoy Bharadwaj
+                           <i class="mdi-navigation-more-vert right"></i></span>
+                        <p><a href="#">Follow him on Facebook</a>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Mrinmoy Bharadwaj <i class="mdi-navigation-close right"></i></span>
+                        <p>Mrinmoy Bharadwaj is a Doctoral Student in the Department of Electronics and Electrical Engineering, Indian Institute of Technology Guwahati since July 2012.He is involved with the Counselling Cell of the Institute since its inception into the IIT Guwahati system in 2014. He also has served as a Member of the Campus Wellbeing Group which aims at the wellbeing of the Campus residents.
+                        He is also associated with Youth Empowerment Club through YES+ program under the Art of Living Foundation.He has attended a workshop on the Emotional Freedom Technique (EFT) intended for self-control held at Downtown Hospitals Guwahati in 2014 under the mentorship of Dr. Rani Bora.
+                        In personal terms, he is a very enthusiastic, encouraging and motivating personality. He loves to listen, understand and help people. A calm person by nature, he nurtures a strong love for nature and wildlife.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                          <img class="activator" src="{% static 'img/demo.jpg' %} ">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Ayush Krishna <i class="mdi-navigation-more-vert right"></i></span>
+                        <p><a href="#">Follow him on Facebook</a>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Ayush Krishna <i class="mdi-navigation-close right"></i></span>
+                        <p>Ayush Krishna is a undergraduate student pursuing Engineering Physics. He has done his secondary and senior secondary education from Ramakrishna Mission Vidyapith,Deoghar.
+Physics helps him understand about the laws and course of nature.He tries to follow the same in his life.As Nature gives us a beautiful life,so he prefers to live it happily and lively.He loves listening to people and understanding them.He believes that obstacles in life have a greater motive rather than immediate happenings.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                          <img class="activator" src="{% static 'img/preetham.jpg' %} ">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Preetham Kamidi <i class="mdi-navigation-more-vert right"></i></span>
+                        <p><a href="#">Follow him on Facebook</a>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Preetham Kamidi<i class="mdi-navigation-close right"></i></span>
+                        <p>Preetham Kamidi is CSE Undergraduate student.
+                            He believes in second chances. He believe there's always a silver lining and we just have to
+                            be patient enough. He is fascinated by people and love listening to them.He is person to whom life s
+                            eems always beautiful.He thinks there is a solution to every problem.He manifests the pleasure of interacti
+                            ng with people.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                          <img class="activator" src="{% static 'img/demo.jpg' %} ">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Ankit Dalal <i class="mdi-navigation-more-vert right"></i></span>
+                        <p><a href="#">Follow him on Facebook</a>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Ankit Dalal <i class="mdi-navigation-close right"></i></span>
+                        <p>Mr. Ankit Dalal is a research scholar in EEE Department, IIT Guwahati. He has pursued his bachelor degree in electrical engineering from SVNIT Surat, Gujarat.
+                            He has experience of over 4 years various aspects of campus life and has deep interest in helping people in their academic and non-academic activities. Being a research scholar he is involved in various academic activities like classes, tutorials and laboratories. He is currently Ph.D student's representative in EEE department and an active member of Student's Academic Board, IIT Guwahati. He is also involved with ZIZ, IIT Guwahati initiative to provide quality education to the children nearby IIT campus. With the aim of pursuing his interest in helping others, he is associated with the counseling cell (SAATHI), IIT Guwahati since its inception.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <!--  Scripts-->
+    <script src=" {% static 'min/plugin-min.js'%}"></script>
+    <script src=" {% static 'min/custom-min.js '%}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".card").hover(function(){
+                $(this).css("background-color", "#77EF46");
+                }, function(){
+                $(this).css("background-color", "white");
+            });
+        });
+     </script>
+
+
+</body>
+</html>

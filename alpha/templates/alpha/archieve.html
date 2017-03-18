@@ -1,0 +1,39 @@
+{% load staticfiles %}
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'archieve.css' %}">
+{% extends "main/base2.html" %}
+{% block content  %}
+<style>
+        #chatbody {
+  float: left;
+  width: 75%;
+  margin-left: 25%;
+  padding: 0;
+}
+
+</style>
+
+<div id=""chatbody>
+    <div id="chat-body" class="panel panel-default">
+        <div class="panel-heading">Chat Box</div>
+        <div id="msg-list-div" class="panel-body">
+            <ul id="msg-list" class="list-group">
+                {% for obj in chat %}
+                    {% if obj.user == request.user %}
+
+                        <li class="text-right list-group-item">{{ obj.user.username }} {{ obj.user.is_staff }}   {{ obj.message }}</li>
+
+                    {% else %}
+
+                        <li class="text-left list-group-item">{{ obj.user.username }} {{ obj.user.is_staff }}   {{ obj.message }}</li>
+                    {% endif %}
+                {% empty %}
+                    <li class="text-right list-group-item">No messages yet!</li>
+                {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

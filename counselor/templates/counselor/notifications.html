@@ -1,0 +1,67 @@
+{% extends "main/base.html" %}
+{% block content  %}
+<div class="container">
+         <div class="row">
+             <div class="col s12 m6 l6 " >
+                 <div class="card-panel">
+                     <h4> Replies on your chat </h4>
+
+                     </div>
+
+
+         {% for obj in notifi %}
+
+            {% if request.user.username == "counselor1" %}
+                {% if obj.title == None %}
+                    {% if obj.writer != 'counselor1' %}
+                       <div class="card-panel">
+                        <a  href = "/counselor/messlist/{{ obj.message_id }}" > <h5> <b>{{ obj.writer }}</b>  has replied on your message </b> </h5>  </a>
+                        <p > {{ obj.timestamp }} </p>
+                        </div>
+
+                    {% endif %}
+                {% else %}
+                         <div class="card-panel">
+                        <a  href = "/counselor/messlist/{{ obj.message_id }}" > <h5> <b>{{ obj.writer }}</b>  has asked question with title=<b>{{ obj.title }}</b> </h5>  </a>
+                        <p> {{ obj.timestamp }} </p>
+                        </div>
+                {% endif %}
+
+            {% else %} 
+                        {% if obj.title == None %}
+                           {% if obj.writer == 'counselor1' and obj.creator == request.user.username %}
+                            <div class="card-panel">
+                            <a  href = "/counselor/messlist/{{ obj.message_id }}" > <h5> <b>{{ obj.writer }}</b>  has replied on your message </b> </h5>  </a>
+                            <p> {{ obj.timestamp }} </p>
+                            </div>
+                            {% endif %}
+                         {% endif %}
+            {% endif %}
+
+
+
+         {% endfor %}
+          </div>
+
+             <div class="col s12 m6 l6 " >
+                 <div class="card-panel">
+                     <h4>Comments on Your Post </h4>
+
+                     </div>
+
+         {% for obj in notifi1 %}
+            {% if request.user.username == obj.creator and request.user.username != writer %}
+                 <div class="card-panel">
+             <a  href = "/discussions/{{ obj.message_id }}" > <h5> <b>{{ obj.writer }}</b>  has commented on your post {{obj.title}} </b> </h5>  </a>
+                        <p> {{ obj.timestamp }} </p>
+            </div>
+
+            {% endif %}
+         {% endfor %}
+             </div>
+       </div>
+ </div>
+
+
+
+{% endblock content %}

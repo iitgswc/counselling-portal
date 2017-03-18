@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8" >
+    <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+     {% load staticfiles %}
+    <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href=" {% static 'main2/css/materialize.min.css' %} "  media="screen,projection"/>
+
+
+
+</head>
+
+
+<body>
+    <nav class="navbar navbar-default ">
+        <div class="container-fluid" >
+            <div class="navbar-header" >
+                <ul class="nav navbar-nav">
+                    <li> <a href="/" >Dost</a></li>
+                    <li> <a href="/discussions" >Discuss</a></li>
+                    <li> <a href="/faqs" >FAQS</a></li>
+                    <li> <a href="/quotes" > Quotes</a></li>
+                    <li> <a href="/blog" > Blog</a></li>
+                    <li> <a href="/team" > Team</a></li>
+                    {% if user.is_authenticated %}
+                           {% if request.user.username == "counselor1" %}
+                           <li> <a href="/counsellor/messlist/" >MessageList</a></li>
+                           <li> <a href="/counsellor/notifi/" >Notifications</a></li>
+                           {% else %}
+                            <li> <a href="/counsellor/myinbox/" >Inbox</a></li>
+                            <li> <a href="/counsellor/ask" >Ask Counsellor</a></li>
+                            <li> <a href="/counsellor/notifi/" >Notifications</a></li>
+                           {% endif %}
+
+                    {% endif %}
+
+                    {% if user.is_authenticated %}
+                        <ul class="right hide-on-med-and-down">
+                        <li  style="margin:0px 0px 0px 0px;"><a href="" class="waves-effect waves-light btn"> Welcome {{ user.username }} </a>  </li>
+                        <li style="margin:0px 0px 0px 0px;"><a href="/logout" class="waves-effect waves-light btn">Logout</a> </li>
+                        </ul>
+
+                    {% else %}
+                        <ul class="right hide-on-med-and-down">
+                    	<li style=""><a href="/login" class="waves-effect waves-light btn">LOGIN</a></li>
+						<li style=""><a href="/register" class="waves-effect waves-light btn">SIGNUP NOW</a></li>
+                        </ul>
+                    {% endif %}
+
+                    </ul>
+        </div>
+            </div>
+
+    </nav>
+
+            <div class="container-fluid" style="margin-top: 4%;">
+                    <div class="row" >
+                        <div class="col s12 m4 l3 " >
+                            <div class="container ">
+                                <div class="input-field col s12">
+
+                                  <label for="email" data-error="wrong" data-success="right"></label>
+                                    <form  method="GET" action="" >
+                                        <input type="text" name="q" class="form-control" placeholder="Search post..." />
+                                        <button style="width:100%" class="btn waves-effect waves-light" type="submit" name="action">Search
+                                        <i class="material-icons right">send</i> </button>
+
+                                     </form>
+                                    <ul><a style="width:100%" href="/discussions/create" class="waves-effect waves-light btn-large">Create Post</a> </ul>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="col s12 m8 l8" >
+                            {% for obj in instance %}
+                                 <div class="card-panel">
+                                <a href='{{ obj.get_absolute_url }}'>
+                                    <h5 class="post-title">
+                                        {{ obj.title }}
+                                    </h5>
+                                    <!--<h3 class="post-subtitle">-->
+                                        <!--<p> {{ obj.content }} </p>-->
+                                    <!--</h3>-->
+                                </a><br>
+                                Posted by <b>{{ obj.writer }}</b> on {{ obj.timestamp }} <br>
+                                Category--<b> {{ obj.option }}</b>
+
+                              </div>
+
+                         {% endfor %}
+                        </div>
+                    </div>
+             </div>
+             <div class="container">
+
+                          <div class="pagination">
+                                <span class="step-links">
+                                    {% if instance.has_previous %}
+                                        <a href="?page={{ instance.previous_page_number }}">previous</a>
+                                    {% endif %}
+
+                                    <span class="current">
+                                         Page {{ instance.number }} of {{ instance.paginator.num_pages }}.
+                                    </span>
+
+                                    {% if instance.has_next %}
+                                        <a href="?page={{ instance.next_page_number }}">next</a>
+                                    {% endif %}
+                                </span>
+                          </div>
+                 </div>
+
+    <script>
+     $( document ).ready(function(){
+       $(".dropdown-button").dropdown();
+     });
+
+     </script>
+
+
+    <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src=" {% static 'js/materialize.min.js % } "></script>
+    </body>
+    </body>
+</html>

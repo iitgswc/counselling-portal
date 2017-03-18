@@ -1,0 +1,20 @@
+
+{% extends "main/base.html" %}
+{% block content  %}
+<div class="container">
+   <div class="row">
+       <div class="col s12 m8 l8 " >
+
+            <h1>Sign Up</h1>
+            <hr/>
+
+            <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
+                {{ form.as_p }}
+
+              <p> <input type="submit" class="btn btn-default" value="Click To Sign Up " />  </p>
+            </form>
+        </div>
+       </div>
+
+    </div>
+{% endblock content %}

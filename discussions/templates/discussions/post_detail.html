@@ -1,0 +1,50 @@
+{% extends "main/base.html" %}
+{% block content  %}
+   <div class="container">
+   <div class="row">
+       <div class="col s12 m8 l8 " >
+
+                    {% load crispy_forms_tags %}
+
+                        {% if  user.is_authenticated %}
+                            {% if user == writer %}
+                            <div style=" margin: 10px 0 10px 0;">
+                            <a href="/discussions/{{ obj.id }}/edit" class="btn  btn-primary btn-large login_now">Edit Post</a>
+                           <a href="/discussions/{{ obj.id }}/delete" class="btn  btn-primary btn-large login_now">Delete Post</a>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+
+                        <h5>{{ obj.title }}</h5>
+                        <p><h5> {{ obj.content }} </h5> </p>
+
+                    <div >
+                        <b>comments on this post :- </b>
+                        {% for comment in comments %}
+                            <div class="card-panel">
+
+                                           <p>{{ comment.content }}</p>
+
+                                          <p> via -- <b>{{ comment.user }}</b> on {{ comment.timestamp }}<br>
+                                            {{ comment.timestamp|timesince }} ago </p>
+
+
+
+                            </div>
+                        {% endfor %}
+                    </div>
+
+
+            <form id="icon_prefix2" class="materialize-textarea" method="POST" action="." >{% csrf_token %}
+                                {{ comment_form }}
+                <input type="submit" value="Post Comment" class="btn btn-default">
+
+            </form>
+
+
+
+       </div>
+       </div>
+       </div>
+
+{% endblock content %}
