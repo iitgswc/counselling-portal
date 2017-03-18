@@ -21,28 +21,16 @@
                 <ul class="nav navbar-nav">
                     <li> <a href="/" >Dost</a></li>
                     <li> <a href="/discussions" >Discuss</a></li>
-                    <li> <a href="/faqs" >FAQS</a></li>
                     <li> <a href="/quotes" > Quotes</a></li>
-                    <li> <a href="/blog" > Blog</a></li>
                     <li> <a href="/team" > Team</a></li>
-                    {% if user.is_authenticated %}
-                           {% if request.user.username == "counselor1" %}
-                           <li> <a href="/counsellor/messlist/" >MessageList</a></li>
-                           <li> <a href="/counsellor/notifi/" >Notifications</a></li>
-                           {% else %}
-                            <li> <a href="/counsellor/myinbox/" >Inbox</a></li>
-                            <li> <a href="/counsellor/ask" >Ask Counsellor</a></li>
-                            <li> <a href="/counsellor/notifi/" >Notifications</a></li>
-                           {% endif %}
+                    <li> <a href="/chat" > Chat</a></li>
 
-                    {% endif %}
 
                     {% if user.is_authenticated %}
-                        <ul class="right hide-on-med-and-down">
-                        <li  style="margin:0px 0px 0px 0px;"><a href="" class="waves-effect waves-light btn"> Welcome {{ user.username }} </a>  </li>
-                        <li style="margin:0px 0px 0px 0px;"><a href="/logout" class="waves-effect waves-light btn">Logout</a> </li>
+                       <ul class="right hide-on-med-and-down">
+                        <li  style="margin:0px 5px 0px 0px;"><a href="" class="waves-effect waves-light btn"> Welcome {{ user.username }} </a>  </li>
+                        <li style="margin:0px 10px 0px 0px;"><a href="/logout" class="waves-effect waves-light btn">Logout</a> </li>
                         </ul>
-
                     {% else %}
                         <ul class="right hide-on-med-and-down">
                     	<li style=""><a href="/login" class="waves-effect waves-light btn">LOGIN</a></li>
@@ -127,7 +115,7 @@
 
     <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src=" {% static 'js/materialize.min.js % } "></script>
+      <script type="text/javascript" src= "{% static 'js/materialize.min.js' %}" ></script>
     </body>
     </body>
 </html>

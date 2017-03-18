@@ -3,68 +3,139 @@
 <html>
 
 <head>
-    <title>Chat Panel</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'chat.css' %}">
+     <meta charset="utf-8" >
+    <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+
+    <!--{% load staticfiles %}-->
+	<!--<link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}" type = "text/css"/>-->
+    <!--<link rel="stylesheet" href="{% static 'main/css/simple-sidebar.css' %}" type = "text/css"/>-->
+    <title>{{ username }}</title>
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-</head>
 
-<body>
-    <div id="link">
-        <h1>Archives</h1>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href=" {% static 'main2/css/materialize.min.css' %} "  media="screen,projection"/>
+
+
+    <style>
+        #chatcontrol {
+  float: left;
+  width: 70%;
+  margin-left: 25%;
+  margin-top: 8%;
+  padding: 0;
+  overflow-y:hidden;
+}
+header, main, footer {
+      padding-left: 300px;
+    }
+
+    @media only screen and (max-width : 992px) {
+      header, main, footer {
+        padding-left: 0;
+      }
+    }
+    .navbar.navbar-default{
+
+        position: fixed;
+        z-index: 1000;
+    }
+</style>
+</head>
+<body id>
+    <nav class="navbar navbar-default ">
+        <div class="container-fluid">
+            <div class="navbar-header" >
+
+                <ul class="nav navbar-nav">
+                    <li> <a href="/" >Dost</a></li>
+                    <li> <a href="/discussions" >Discuss</a></li>
+                    <li> <a href="/quotes" > Quotes</a></li>
+                    <li> <a href="/team" > Team</a></li>
+                    <li> <a href="/chat" > Chat</a></li>
+
+
+                    {% if user.is_authenticated %}
+                       <ul class="right hide-on-med-and-down">
+                        <li  style="margin:0px 5px 0px 0px;"><a href="" class="waves-effect waves-light btn"> Welcome {{ user.username }} </a>  </li>
+                        <li style="margin:0px 10px 0px 0px;"><a href="/logout" class="waves-effect waves-light btn">Logout</a> </li>
+                        </ul>
+                    {% else %}
+                        <ul class="right hide-on-med-and-down">
+                    	<li style=""><a href="/login" class="waves-effect waves-light btn">LOGIN</a></li>
+						<li style=""><a href="/register" class="waves-effect waves-light btn">SIGNUP NOW</a></li>
+                        </ul>
+                    {% endif %}
+
+                    </ul>
+        </div>
+            </div>
+
+    </nav>
+
+    <ul id="slide-out" class="side-nav fixed" style="margin-top: 5%">
+        <li><a href="/chat">Back</a> </li>
+        <li>Archives</li>
         {% for url in urls %}
-            <a href={{ url.url }}> {{ url.name }}    </a><br>
+            <li><a href={{ url.url }}> {{ url.name }}    </a></li>
         {% endfor %}
-    </div>
-    <div id="chatbody">
-            <div id="chat-body" class="panel panel-default">
-            <div class="panel-heading">Chat Box</div>
-            <div id="msg-list-div" class="panel-body">
-                <ul id="msg-list" class="list-group">
-                    {% for obj in chat %}
+
+    </ul>
+
+
+
+
+    <div id ="chatcontrol">
+
+    <div id="chat-body" class="panel panel-default">
+        <div class="panel-heading">Chat Box</div>
+        <div id="msg-list-div" class="panel-body">
+            <ul id="msg-list" class="collection">
+                {% for obj in chat %}
                         {% if obj.user == request.user %}
 
-                            <li class="text-right list-group-item">{{ obj.user.username }} {{ obj.user.is_staff }}   {{ obj.message }}</li>
+                            <li class="collection-item" style="text-align: right">{{ obj.user.username }} {{ obj.user.is_staff }}   {{ obj.message }}</li>
 
                         {% else %}
                             {% if obj.user.is_staff == True  %}
                                 {% if request.user.username == obj.userto %}
 
-                            <li class="text-left list-group-item">{{ obj.user.username }} {{ obj.user.is_staff }}   {{ obj.message }}</li>
+                            <li class="collection-item" style="text-align: left">{{ obj.user.username }} {{ obj.user.is_staff }}   {{ obj.message }}</li>
                                 {% endif %}
                                 {% endif %}
                                 {% endif %}
                     {% empty %}
-                        <li class="text-right list-group-item">No messages yet!</li>
+                        <li class="collection-item" style="text-align: right">No messages yet!</li>
                     {% endfor %}
-                    <script>
-                        var chatlist = document.getElementById('msg-list-div');
-                        chatlist.scrollTop = chatlist.scrollHeight;
-                    </script>
-                </ul>
-            </div>
+                <script>
+                    var chatlist = document.getElementById('msg-list-div');
+                    chatlist.scrollTop = chatlist.scrollHeight;
+                </script>
+            </ul>
         </div>
-        <div id="username">{{ username }}</div>
-        <form id="chat-form" method="post" action="/chat/post/">
-            <div id="chat-bottom" class="input-group">
-                <input type="text" id="chat-msg" name="chat-msg" class="form-control"/>
-                <span class="input-group-btn">
-                    <input class="btn btn-default" id="send" type="submit" value="Send"/>
-                </span>
-            </div>
-        </form>
+    </div>
+
+    <form id="chat-form" method="post" action="/chat/post/">
+        <div id="chat-bottom" class="input-group">
+            <input type="text" id="chat-msg" name="chat-msg" class="form-control"/>
+            <span class="input-group-btn">
+                <input class="btn btn-default" id="send" type="submit" value="Send"/>
+            </span>
+        </div>
+    </form>
     </div>
 </body>
 
-
-
-
-
 <script src="{% static 'chat.js' %}"></script>
 </html>
+
+<!-----   --->
+
+
+
+

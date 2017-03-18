@@ -14,13 +14,30 @@
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href=" {% static 'main2/css/materialize.min.css' %} "  media="screen,projection"/>
+    <style>
+    header, main, footer {
+      padding-left: 300px;
+    }
+
+    @media only screen and (max-width : 992px) {
+      header, main, footer {
+        padding-left: 0;
+      }
+    }
+    .navbar.navbar-default{
+
+        position: fixed;
+        z-index: 1000;
+    }
+    </style>
+
 
 </head>
 
 
 <body>
     <nav class="navbar navbar-default ">
-        <div class="container-fluid" >
+        <div class="container-fluid">
             <div class="navbar-header" >
 
               <ul class="nav navbar-nav">
@@ -49,7 +66,10 @@
 
     </nav>
 
-
+    <ul id="slide-out" class="side-nav fixed" style="margin-top: 5%">
+      <li><a href="/chat"> Back  </a></li>
+         <li><a href="/chat/home"> Chatroom  </a></li>
+    </ul>
 
 
             {% block content %}

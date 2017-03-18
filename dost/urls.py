@@ -35,10 +35,7 @@ urlpatterns = [
     )),
     url(r'^chat/',include('alpha.urls')),
     # url('^accounts/', include('django.contrib.auth.urls')),
-    url('^counsellor/', include('counselor.urls')),
-    url('^blog/', include('blog.urls')),
     url('^quotes/', include('quotes.urls')),
-    url('^faqs/', include('faqs.urls')),
     url('^team/', include('team.urls'))
 
 ]

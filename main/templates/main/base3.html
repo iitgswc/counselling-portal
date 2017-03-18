@@ -42,24 +42,13 @@
         <div class="container-fluid">
             <div class="navbar-header" >
 
-                <ul class="nav navbar-nav">
+             <ul class="nav navbar-nav">
                     <li> <a href="/" >Dost</a></li>
                     <li> <a href="/discussions" >Discuss</a></li>
-                    <li> <a href="/faqs" >FAQs</a></li>
                     <li> <a href="/quotes" > Quotes</a></li>
-                    <li> <a href="/blog" > Blog</a></li>
                     <li> <a href="/team" > Team</a></li>
-                    {% if user.is_authenticated %}
-                           {% if request.user.username == "counselor1" %}
-                           <li> <a href="/counsellor/messlist/" >MessageList</a></li>
-                           <li> <a href="/counsellor/notifi/" >Notifications</a></li>
-                           {% else %}
-                            <li> <a href="/counsellor/myinbox/" >Inbox</a></li>
-                            <li> <a href="/counsellor/ask" >Ask Counsellor</a></li>
-                            <li> <a href="/counsellor/notifi/" >Notifications</a></li>
-                           {% endif %}
+                    <li> <a href="/chat" > Chat</a></li>
 
-                    {% endif %}
 
                     {% if user.is_authenticated %}
                        <ul class="right hide-on-med-and-down">

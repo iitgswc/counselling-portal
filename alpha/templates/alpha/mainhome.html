@@ -1,21 +1,86 @@
+{% load staticfiles %}
+
+<html>
+
 <head>
+     <meta charset="utf-8" >
+    <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+
+    <!--{% load staticfiles %}-->
+	<!--<link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}" type = "text/css"/>-->
+    <!--<link rel="stylesheet" href="{% static 'main/css/simple-sidebar.css' %}" type = "text/css"/>-->
+
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href=" {% static 'main2/css/materialize.min.css' %} "  media="screen,projection"/>
+
+
     <style>
-        #chatbody {
+        #chatcontrol {
   float: left;
-  width: 85%;
-  margin: 0;
+  width: 70%;
+  margin-left: 25%;
+  margin-top: 2%;
   padding: 0;
+  overflow-y:hidden;
 }
-#link {
-  float:left;
-    text-align:center;
-  margin-right: 4%;
-}
+header, main, footer {
+      padding-left: 300px;
+    }
 
+    @media only screen and (max-width : 992px) {
+      header, main, footer {
+        padding-left: 0;
+      }
+    }
+    .navbar.navbar-default{
 
-    </style>
-
+        position: fixed;
+        z-index: 1000;
+    }
+</style>
 </head>
+<body id>
+    <nav class="navbar navbar-default ">
+        <div class="container-fluid">
+            <div class="navbar-header" >
+
+                <ul class="nav navbar-nav">
+                    <li> <a href="/" >Dost</a></li>
+                    <li> <a href="/discussions" >Discuss</a></li>
+                    <li> <a href="/quotes" > Quotes</a></li>
+                    <li> <a href="/team" > Team</a></li>
+                    <li> <a href="/chat" > Chat</a></li>
+
+
+                    {% if user.is_authenticated %}
+                       <ul class="right hide-on-med-and-down">
+                        <li  style="margin:0px 5px 0px 0px;"><a href="" class="waves-effect waves-light btn"> Welcome {{ user.username }} </a>  </li>
+                        <li style="margin:0px 10px 0px 0px;"><a href="/logout" class="waves-effect waves-light btn">Logout</a> </li>
+                        </ul>
+                    {% else %}
+                        <ul class="right hide-on-med-and-down">
+                    	<li style=""><a href="/login" class="waves-effect waves-light btn">LOGIN</a></li>
+						<li style=""><a href="/register" class="waves-effect waves-light btn">SIGNUP NOW</a></li>
+                        </ul>
+                    {% endif %}
+
+                    </ul>
+
+                    </ul>
+        </div>
+            </div>
+
+    </nav>
+
+    <ul id="slide-out" class="side-nav fixed" style="margin-top: 5%">
+          <li><a href="/chat">Refresh</a> </li>
+        <li>Archives</li>
+        {% for url in urls %}
+            <li><a href={{ url.url }}> {{ url.name }}    </a></li>
+        {% endfor %}
+
+    </ul>
 
 <div id="link">
         <h1>Archives</h1>
@@ -23,18 +88,23 @@
             <a href={{ url.url }}> {{ url.name }}  <br>  </a>
         {% endfor %}
 </div>
+
+    <div id ="chatcontrol">
 <div id="chatbody">
     {% if cond %}
-        <h1>A counsellor is alloted to you click on hyperlink to move to chat room</h1>
+        <h3>A counsellor is alloted to you click on hyperlink to move to chat room</h3>
         <a href="/chat/home">Click Here</a>
     {% else %}
         {% if cond2 %}
-        <h1>NO Counsellor is alloted to you , you have already sent a request</h1>
-        <h1>Refresh to check again</h1>
+        <h3>NO Counsellor is alloted to you , you have already sent a request</h3>
+        <h3>Refresh to check again</h3>
         {% else %}
-        <h1>You have not sent a request , click below to send a requset</h1>
+        <h3>You have not sent a request , click below to send a requset</h3>
             <a href='/chat/createrequest'> Click Here</a>
         {% endif %}
     {% endif %}
 
 </div>
+    </div>
+</body>
+</html>

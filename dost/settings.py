@@ -36,11 +36,8 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 INSTALLED_APPS = [
     'alpha',
-    'blog',
     'quotes',
-    'faqs',
     'team',
-    'counselor',
     'comment',
     'discussions',
     'accounts',

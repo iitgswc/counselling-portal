@@ -30,74 +30,27 @@
         <div class="container-fluid">
             <div class="nav-wrapper">
             <!--<a href="#" id="logo-container" class="brand-logo">MD Template</a>-->
-                <ul class="left hide-on-med-and-down">
+                <ul class="nav navbar-nav">
                     <li> <a href="/" >Dost</a></li>
                     <li> <a href="/discussions" >Discuss</a></li>
-                    <li> <a href="/faqs" >FAQs</a></li>
                     <li> <a href="/quotes" > Quotes</a></li>
-                    <li> <a href="/blog" > Blog</a></li>
                     <li> <a href="/team" > Team</a></li>
-                    {% if user.is_authenticated %}
-                           {% if request.user.username == "counselor1" %}
-                           <li> <a href="/counsellor/messlist/" >MessageList</a></li>
-                           <li> <a href="/counsellor/notifi/" >Notifications</a></li>
-                           {% else %}
-                            <li> <a href="/counsellor/myinbox/" >Inbox</a></li>
-                            <li> <a href="/counsellor/ask" >Ask Counsellor</a></li>
-                            <li> <a href="/counsellor/notifi/" >Notifications</a></li>
-                           {% endif %}
+                    <li> <a href="/chat" > Chat</a></li>
 
-                    {% endif %}
-                </ul>
-                <ul class="right hide-on-med-and-down">
+
                     {% if user.is_authenticated %}
-                        <ul class="right hide-on-med-and-down">
+                       <ul class="right hide-on-med-and-down">
                         <li  style="margin:0px 5px 0px 0px;"><a href="" class="waves-effect waves-light btn"> Welcome {{ user.username }} </a>  </li>
                         <li style="margin:0px 10px 0px 0px;"><a href="/logout" class="waves-effect waves-light btn">Logout</a> </li>
                         </ul>
-
-                    {% else %}
-                        <ul class="right hide-on-med-and-down">
-                    	<li style="margin:0px 5px 0px 0px;"><a href="/login" class="waves-effect waves-light btn">LOGIN</a></li>
-						<li style="margin:0px 10px 0px 0px;"><a href="/register" class="waves-effect waves-light btn">SIGNUP NOW</a></li>
-
-                        </ul>
-                    {% endif %}
-                </ul>
-
-                <ul id="nav-mobile" class="side-nav">
-                    <li> <a href="/" >Dost</a></li>
-                    <li> <a href="/discussions" >Discuss</a></li>
-                    <li> <a href="/faqs" >FAQs</a></li>
-                    <li> <a href="/quotes" > Quotes</a></li>
-                    <li> <a href="/blog" > Blog</a></li>
-                    <li> <a href="/team" > Team</a></li>
-                    {% if user.is_authenticated %}
-                           {% if request.user.username == "counselor1" %}
-                           <li> <a href="/counsellor/messlist/" >MessageList</a></li>
-                           <li> <a href="/counsellor/notifi/" >Notifications</a></li>
-                           {% else %}
-                            <li> <a href="/counsellor/myinbox/" >Inbox</a></li>
-                            <li> <a href="/counsellor/ask" >Ask Counsellor</a></li>
-                            <li> <a href="/counsellor/notifi/" >Notifications</a></li>
-                           {% endif %}
-
-                    {% endif %}
-
-                    {% if user.is_authenticated %}
-                        <ul class="right hide-on-med-and-down">
-                        <li  class="navbar-text" > Welcome !! {{ user.username }}   </li>
-                        <li><a href="/logout" class="waves-effect waves-light btn">Logout</a> </li>
-                        </ul>
-
                     {% else %}
                         <ul class="right hide-on-med-and-down">
                     	<li style=""><a href="/login" class="waves-effect waves-light btn">LOGIN</a></li>
 						<li style=""><a href="/register" class="waves-effect waves-light btn">SIGNUP NOW</a></li>
                         </ul>
                     {% endif %}
-                </ul>
-            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+
+                    </ul>
             </div>
         </div>
     </nav>

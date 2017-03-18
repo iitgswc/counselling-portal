@@ -6,6 +6,8 @@ from dost import settings
 import time
 from random import randint
 from .models import Chat,counsallot,requests,ArchChat
+from django.contrib.auth.decorators import login_required
+
 
 class k:
     url=""
@@ -15,13 +17,14 @@ class k:
         self.name = name
         self.url=url
 
-
+@login_required
 def chat(request):
     if(request.user.is_staff==True):
         return redirect('/chat/mainhomecounsellor')
     else:
         return redirect('/chat/mainhome')
 
+@login_required
 def Home(request):
     if (request.user.is_staff == True):
         return HttpResponse('You are not authorized to see this')
@@ -39,6 +42,7 @@ def Home(request):
         else:
             return redirect('/chat/mainhome')
 
+@login_required
 def Post(request):
     if request.method == "POST":
         msg = request.POST.get('msgbox', None)
@@ -51,7 +55,7 @@ def Post(request):
     else:
         return HttpResponse('Request must be POST.')
 
-
+@login_required
 def Post2(request):
     if request.method == "POST":
         msg = request.POST.get('msgbox', None)
@@ -63,6 +67,7 @@ def Post2(request):
     else:
         return HttpResponse('Request must be POST.')
 
+@login_required
 def Messages(request):
     if(request.user.is_staff==True):
         return HttpResponse('You are not authorized to see this')
@@ -70,6 +75,7 @@ def Messages(request):
         c = Chat.objects.all()
         return render(request, 'alpha/messages.html', {'chat': c,'cond':True})
 
+@login_required
 def counsellorhome(request,id):
     if (request.user.is_staff == False):
         return HttpResponse('You are not authorized to see this')
@@ -81,6 +87,8 @@ def counsellorhome(request,id):
             return render(request,'alpha/homecounsellor.html',{'chat':c,'username':id,'url':url})
         else:
             return redirect('/chat/mainhomecounsellor')
+
+@login_required
 def Messages2(request):
     if (request.user.is_staff == False):
         return HttpResponse('You are not authorized to see this')
@@ -88,6 +96,7 @@ def Messages2(request):
         c = Chat.objects.all()
         return render(request, 'alpha/messages2.html', {'chat': c,'username':request.GET['id']})
 
+@login_required
 def mainhome(request):
     if (request.user.is_staff == True):
         return HttpResponse('Not Authorized to accesss this page')
@@ -114,6 +123,7 @@ def mainhome(request):
             else:
                 return render(request, 'alpha/mainhome.html', {'cond': False,'cond2':False,'urls':urls})
 
+@login_required
 def createrequest(request):
     if(request.user.is_staff==True):
         return HttpResponse('Not Authorized to visit this page')
@@ -123,6 +133,7 @@ def createrequest(request):
     c.save()
     return redirect('/chat/mainhome')
 
+@login_required
 def mainhomecounsellor(request):
     if(request.user.is_staff==False):
         return HttpResponse("<h1>Not Authorized to accesss this page</h1>")
@@ -145,22 +156,28 @@ def mainhomecounsellor(request):
             return render(request, 'alpha/mainhomecounsellor.html',
                           {'cond': False, 'urls': urls})
 
+@login_required
 def allot(request,id):
     if(request.user.is_staff==False):
         return HttpResponse('Not Authorized to visit the page')
     all=counsallot.objects.filter(username=id)
     all2 = counsallot.objects.filter(counsname=request.user.username)
-    if(all.exists() or all2.exists()):
-        return redirect('/chat/mainhomecounsellor')
+    if(requests.objects.filter(username=id).exists()):
+        if(all.exists() or all2.exists() ):
+            return redirect('/chat/mainhomecounsellor')
+        else:
+            c=counsallot(username=id,counsname=request.user.username)
+            c.save()
+            r=requests.objects.filter(username=id)
+            p=r[0];
+            p.status='alloted'
+            p.save()
+            return redirect('/chat/home/'+id)
     else:
-        c=counsallot(username=id,counsname=request.user.username)
-        c.save()
-        r=requests.objects.filter(username=id)
-        p=r[0];
-        p.status='alloted'
-        p.save()
-        return redirect('/chat/home/'+id)
+        return redirect('/chat/mainhomecounsellor')
 
+
+@login_required
 def pause(request):
     if (request.user.is_staff == False):
         return HttpResponse('Not Authorized to visit the page')
@@ -180,6 +197,7 @@ def pause(request):
     c[0].delete()
     return redirect('/chat/mainhomecounsellor')
 
+@login_required
 def complete(request):
     if (request.user.is_staff == False):
         return HttpResponse('Not Authorized to visit the page')
@@ -199,6 +217,7 @@ def complete(request):
     c[0].delete()
     return redirect('/chat/mainhomecounsellor')
 
+@login_required
 def archieve(request,id):
     if(request.user.is_staff==True):
         return HttpResponse('You are not authorized to access this page')
@@ -216,6 +235,7 @@ def archieve(request,id):
         else:
             return HttpResponse('Counsellor does not exist')
 
+@login_required
 def counsarchieve(request,id):
     if (request.user.is_staff == False):
         return HttpResponse('You are not authorized to access this page')
@@ -234,6 +254,7 @@ def counsarchieve(request,id):
             return HttpResponse('User does not exist')
 
 
+@login_required
 def check(request):
     if (request.user.is_staff == True):
         return HttpResponse('Not Authorized to visit the page')
@@ -243,6 +264,7 @@ def check(request):
     else:
         return JsonResponse({'msg': 'Bye'})
 
+@login_required
 def allarchieve(request):
     if (request.user.is_staff==False):
         return HttpResponse('Not Authorized to visit the page')
