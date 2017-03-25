@@ -104,7 +104,7 @@ def post_list(request):
 
     search_query = request.GET.get("q")
     if search_query:
-        instance_list = instance_list.filter(Q(title__icontains=search_query) | Q(content__icontains=search_query))
+        instance_list = instance_list.filter(Q(title__icontains=search_query) | Q(content__icontains=search_query)| Q(option__icontains=search_query))
     paginator = Paginator(instance_list, 12)
     page = request.GET.get('page')
     try:

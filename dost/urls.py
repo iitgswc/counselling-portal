@@ -31,7 +31,7 @@ urlpatterns = [
     url('^register/', CreateView.as_view(
         template_name='register.html',
         form_class=UserCreationForm,
-        success_url='/discussions'
+        success_url='/'
     )),
     url(r'^chat/',include('alpha.urls')),
     # url('^accounts/', include('django.contrib.auth.urls')),

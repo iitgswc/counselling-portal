@@ -30,11 +30,11 @@
                 {% for obj in chat %}
                     {% if obj.user == request.user %}
 
-                        <li class="collection-item" style="text-align: right">{{ obj.user.username }} {{ obj.user.is_staff }}   {{ obj.message }}</li>
+                        <li class="collection-item" style="text-align: right">    {{ obj.message }}</li>
 
                     {% else %}
 
-                        <li class="collection-item" style="text-align: left">{{ obj.user.username }} {{ obj.user.is_staff }}   {{ obj.message }}</li>
+                        <li class="collection-item" style="text-align: left"> {{ obj.user.username }} {{ obj.message }}</li>
                     {% endif %}
                 {% empty %}
                     <li class="collection-item" style="text-align: right">No messages yet!</li>
@@ -43,6 +43,17 @@
             </ul>
         </div>
     </div>
+
+    <form id="chat-form" method="post" action={{ post_url }}>
+        {% csrf_token %}
+        <div id="chat-bottom" class="input-group">
+            <input type="text" id="chat-msg" name="chat-msg" class="form-control"/>
+            <span class="input-group-btn">
+                <input class="btn btn-default" id="send" type="submit" value="Send"/>
+            </span>
+        </div>
+    </form>
+
     </div>
 {% endblock %}
 

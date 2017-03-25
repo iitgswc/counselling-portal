@@ -16,6 +16,12 @@ float: left;
 
 
 <div id="chatbody">
+<h1>Latest...!!!</h1>
+{% for url in newurls %}
+    <a href={{ url.url }}>  {{ url.name }}    </a><br>
+{% endfor %}
+<br>
+    <h1>OLD Archives</h1>
 {% for url in urls %}
     <a href={{ url.url }}>  {{ url.name }}    </a><br>
 {% endfor %}

@@ -1,17 +1,15 @@
-{{ request.user }}
 {% for obj in chat %}
     {% if obj.user == request.user %}
 
-        <li class="collection-item" style="text-align: right">{{ obj.user.username }} {{ obj.user.is_staff }}   {{ obj.message }}</li>
+        <li class="collection-item" style="text-align: right">{{ obj.user.username }}   {{ obj.message }}</li>
 
     {% else %}
         {% if obj.user.is_staff == True  %}
             {% if request.user.username == obj.userto %}
 
-        <li class="collection-item" style="text-align: left">{{ obj.user.username }} {{ obj.user.is_staff }}   {{ obj.message }}</li>
+        <li class="collection-item" style="text-align: left">{{ obj.user.username }}   {{ obj.message }}</li>
             {% endif %}
             {% endif %}
             {% endif %}
-{% empty %}
-    <li class="collection-item" style="text-align: right">No messages yet!</li>
+
 {% endfor %}

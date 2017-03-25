@@ -52,30 +52,3 @@ class post(models.Model):
         content_type = ContentType.objects.get_for_model(instance)
         return content_type
 
-class notifications1(models.Model):
-    title = models.CharField(max_length=120,blank=True, null=True)
-    writer = models.CharField(max_length=120,blank=False, null=True)
-    message_id = models.PositiveIntegerField(blank=False, null=True)
-    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
-    creator = models.CharField(max_length=120, blank=True, null=True)
-    boolean_field = models.BooleanField(default=True)
-
-    def __str__(self):
-        return self.title
-
-    def __unicode__(self):
-        return self.title
-
-@receiver(post_save, sender=comment)
-def ensure_profile_exists(sender, *args, **kwargs):
-    var = kwargs.get('instance')
-    var2 = var.object_id
-    var3 = post.objects.get(pk=var2)
-    notifications1.objects.get_or_create(title=var3.title, writer=var.user, message_id=var.object_id, creator=var3.writer)
-
-
-
-
-
-
-

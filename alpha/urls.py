@@ -19,6 +19,8 @@ urlpatterns = [
     url(r'^archive/(?P<id>[a-z,0-9]+)', views.archieve, name='archieve'),
     url(r'^check/$', views.check, name='check'),
     url(r'^counsarchive/(?P<id>[a-z,0-9]+)', views.counsarchieve, name='counsarchieve'),
-    url(r'^allarchive/$', views.allarchieve, name='allarchieve')
+    url(r'^allarchive/$', views.allarchieve, name='allarchieve'),
+    url(r'^post3/(?P<id>[a-z,0-9]+)',views.post3,name="post3"),
+    url(r'^makeold/(?P<id>[a-z,0-9]+)', views.makeold, name='makeold')
 
 ]

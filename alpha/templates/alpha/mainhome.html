@@ -40,7 +40,7 @@ header, main, footer {
     }
 </style>
 </head>
-<body id>
+<body>
     <nav class="navbar navbar-default ">
         <div class="container-fluid">
             <div class="navbar-header" >
@@ -98,6 +98,7 @@ header, main, footer {
         {% if cond2 %}
         <h3>NO Counsellor is alloted to you , you have already sent a request</h3>
         <h3>Refresh to check again</h3>
+        <br><a href='/chat/createrequest'> Click Here to resend request</a>
         {% else %}
         <h3>You have not sent a request , click below to send a requset</h3>
             <a href='/chat/createrequest'> Click Here</a>

@@ -11,7 +11,7 @@ $('#chat-form').on('submit', function(event){
 
         success : function(json){
             $('#chat-msg').val('');
-            $('#msg-list').append('<li class="text-right list-group-item">' + json.msg + '</li>');
+            $('#msg-list').append('<li class="collection-item" style="text-align: right">' + json.msg + '</li>');
             var chatlist = document.getElementById('msg-list-div');
             chatlist.scrollTop = chatlist.scrollHeight;
         }
@@ -21,7 +21,7 @@ $('#chat-form').on('submit', function(event){
 function getMessages(){
     if (!scrolling) {
         $.get('/chat/messages2/',{'id':$('#username').html().toString()}, function(messages){
-            $('#msg-list').html(messages);
+            $('#msg-list').append(messages);
             var chatlist = document.getElementById('msg-list-div');
             chatlist.scrollTop = chatlist.scrollHeight;
         });
@@ -34,7 +34,7 @@ $(function(){
     $('#msg-list-div').on('scroll', function(){
         scrolling = true;
     });
-    refreshTimer = setInterval(getMessages, 500);
+    refreshTimer = setInterval(getMessages, 2000);
 });
 
 $(document).ready(function() {
